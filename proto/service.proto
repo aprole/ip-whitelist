@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/aprole/ip-whitelist/pb";
+
+service IPWhitelist {
+  rpc CheckIP (CheckIPRequest) returns (CheckIPResponse) {}
+}
+
+message CheckIPRequest {
+  string ip = 1;
+  repeated string allowedCountries = 2;
+}
+
+message CheckIPResponse {
+  google.protobuf.BoolValue accepted = 1;
+  string ip = 2;
+  string countryIsoCode = 3;
+  string countryName = 4;
+}
